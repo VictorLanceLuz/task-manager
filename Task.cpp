@@ -18,7 +18,7 @@ Task::Task(std::string name,
 const std::string& Task::getName() const { return name; }
 int Task::getPriority() const { return priority; }
 double Task::getEstimatedTimeHours() const { return estimatedTimeHours; }
-const std::string &Task::getDepartment() const { return department; }
+const std::string& Task::getDepartment() const { return department; }
 bool Task::isDone() const { return done; }
 
 void Task::setDone(bool d) { done = d; }
