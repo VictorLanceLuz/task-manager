@@ -27,4 +27,4 @@ public:
 
     void setDone(bool d);
     void print() const;
-}
+};

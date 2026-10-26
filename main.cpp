@@ -28,7 +28,12 @@ int main() {
     std::vector<Task> tasks(idx.size());
 
     std::cout << "== All ==" << std::endl;
-
+    std::transform(idx.begin(), idx.end(), tasks.begin(), [&](int i) {
+        return Task(names[i], priorities[i], times[i], depts[i]);
+    });
+    for (const auto& t : tasks) {
+        t.print();
+    }
 
     std::cout << std::endl << "== Eng >2h ==" << std::endl;
 
