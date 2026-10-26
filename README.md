@@ -1,4 +1,4 @@
-### Task Manager
+# Task Manager
 
 Every day at LambdaDesk, a fresh list of tasks arrives from Product, Engineering, Design, and more teams. Your job is to turn this list into helpful views: what’s urgent, what’s quick to finish, and what needs attention next. Instead of writing many separate loops, you’ll write small functions right where you need them—C++ lambda functions.
 
