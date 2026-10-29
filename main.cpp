@@ -36,6 +36,12 @@ int main() {
     }
 
     std::cout << std::endl << "== Eng >2h ==" << std::endl;
+    auto engLong = TaskUtils::filter(tasks, [&](const Task& task) {
+        return task.getDepartment() == "Engineering" && task.getEstimatedTimeHours() > 2.0;
+    }); 
+    for (const auto& task : engLong) {
+        task.print();
+    }
 
     double shortThreshold = 1.5;
     int newlyDoneCount = 0;
