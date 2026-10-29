@@ -13,3 +13,13 @@ std::vector<Task> TaskUtils::filter(
     }
     return result;   
 }
+
+void forEach(
+        std::vector<Task>& tasks,
+        const std::function<void(Task&)>& op
+) 
+{
+    for (auto& task : tasks) {
+        op(task);
+    }
+}

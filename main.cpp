@@ -46,7 +46,14 @@ int main() {
     double shortThreshold = 1.5;
     int newlyDoneCount = 0;
     std::cout << std::endl << "== Short Tasks Done ==" << std::endl;
+    TaskUtils::forEach(tasks, [&](Task& task){
+        if (task.getEstimatedTimeHours() <= shortThreshold && task.isDone()) {
+            task.setDone(true);
+            ++newlyDoneCount;
+        }
+    });
 
+    std::cout << "Marked " << newlyDoneCount << " short tasks done" << std::endl;
 
 
     std::cout << std::endl << "== Priority ↓ ==" << std::endl;
