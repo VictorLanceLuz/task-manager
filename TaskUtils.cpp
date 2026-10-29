@@ -14,7 +14,7 @@ std::vector<Task> TaskUtils::filter(
     return result;   
 }
 
-void forEach(
+void TaskUtils::forEach(
         std::vector<Task>& tasks,
         const std::function<void(Task&)>& op
 ) 
