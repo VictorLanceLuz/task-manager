@@ -23,3 +23,20 @@ void TaskUtils::forEach(
         op(task);
     }
 }
+
+void TaskUtils::sort(
+        std::vector<Task>& tasks,
+        const std::function<bool(const Task&, const Task&)>& lessThan
+) {
+    for (int i = 0; i < tasks.size(); ++i) {
+        int bestIndex = i;
+        for (int j = i + 1; j < tasks.size(); ++j) {
+            if (lessThan(tasks[j], tasks[bestIndex])) {
+                bestIndex = j;
+            }
+        }
+        if (bestIndex != i) {
+            std::swap(tasks[i], tasks[bestIndex]);
+        }
+    }
+}

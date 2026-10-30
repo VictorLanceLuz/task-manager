@@ -52,11 +52,13 @@ int main() {
             ++newlyDoneCount;
         }
     });
-
     std::cout << "Marked " << newlyDoneCount << " short tasks done" << std::endl;
 
-
     std::cout << std::endl << "== Priority ↓ ==" << std::endl;
+    TaskUtils::sort(tasks, [](const Task& a, const Task& b) { return a.getPriority() > b.getPriority(); });
+    for (const auto& task : tasks) {
+        task.print();
+    }
 
     std::cout << std::endl << "== Renamed [HOT] ==" << std::endl;
 

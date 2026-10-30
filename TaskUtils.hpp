@@ -15,4 +15,8 @@ public:
         std::vector<Task>& tasks,
         const std::function<void(Task&)>& op
     );
+    static void sort(
+        std::vector<Task>& tasks,
+        const std::function<bool(const Task&, const Task&)>& lessThan
+    );
 };
