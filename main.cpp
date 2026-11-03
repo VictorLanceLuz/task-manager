@@ -61,11 +61,59 @@ int main() {
     }
 
     std::cout << std::endl << "== Renamed [HOT] ==" << std::endl;
+    auto renamed = TaskUtils::apply(tasks, [](const Task& task) { 
+        bool highPriority = task.getPriority() >= 8;
+        std::string newTitle = ( highPriority ? "[HOT] " : "") + task.getName();
+        return Task(newTitle, task.getPriority(), task.getEstimatedTimeHours(), task.getDepartment(), task.isDone());
+    });
+    for (const auto& task : renamed) {
+        task.print();
+    }
+
 
     std::cout << std::endl << "== Summary ==" << std::endl;
+    auto summarize = [](const auto& list) {
+        int count = 0;
+        int done = 0;
+        double totalHours = 0.0;
+        for (const auto& task : list) {
+            ++count;
+            if (task.isDone()) ++done;
+            totalHours += task.getEstimatedTimeHours();
+        }
+        std::cout << "Summary: " << count << " tasks, " 
+                  << done << " done, total est. time = " << totalHours << "h" << std::endl;
+    };
+    summarize(tasks);
 
     const std::string projectName = "Apollo";
     std::cout << std::endl << "== Project tag ==" << std::endl;
+    auto showWithProject = [projectName](const Task& task) {
+        std::cout << "[" << projectName << "]";
+        task.print(); 
+    };
+    for (const auto& task : tasks) {
+        showWithProject(task);
+    }
+    
+    int doneCount = 0;
+    auto countDone = [&doneCount](const Task& task) {
+        if (task.isDone()) ++doneCount;
+    };
+    for (const auto& task : tasks) {
+        countDone(task);
+    }
+    std::cout << "Done: " << doneCount << std::endl; 
+
+    int priorityThreshold = 7;
+    int flaggedCount = 0;
+    auto countAbove = [priorityThreshold, &flaggedCount](const Task& task){
+        if (task.getPriority() > priorityThreshold) ++flaggedCount; 
+    };
+    for (const auto& task : tasks) {
+        countAbove(task);
+    }
+    std::cout << "Flagged > " << priorityThreshold << ": " << flaggedCount << std::endl;
 
     int batchId = 42;
     std::cout << std::endl << "== First 3 (batch) ==" << std::endl;
