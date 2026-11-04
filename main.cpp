@@ -117,6 +117,15 @@ int main() {
 
     int batchId = 42;
     std::cout << std::endl << "== First 3 (batch) ==" << std::endl;
+    auto showWithBatch = [msg = std::string("Batch-") + std::to_string(batchId)](const Task& task){
+        std::cout << msg << " :: ";
+        task.print();
+    };
+
+    int limit = (tasks.size() < 3) ? tasks.size() : 3;
+    for (int i = 0; i < limit; ++i) {
+        showWithBatch(tasks[i]);
+    }
 
     return 0;
 }
